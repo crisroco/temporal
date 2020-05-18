@@ -1,6 +1,7 @@
 <?php
 global $DB, $PAGE, $OUTPUT,$CFG,$USER, $COURSE;
 
+
 require_once("../../config.php");
 require_once($CFG->dirroot.'/course/lib.php');
 require_once($CFG->dirroot.'/course/modlib.php');
