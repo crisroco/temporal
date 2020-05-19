@@ -116,7 +116,7 @@ function get_course_plantilla(){
 
 
 function get_course_by_categoria_id($categoria_id){
-  use core_course_category;
+  //use core_course_category;
   $key = 0;
   $cat = core_course_category::get($categoria_id);
   $children_courses = $cat->get_courses();
