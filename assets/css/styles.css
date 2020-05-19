@@ -6,5 +6,5 @@
 }
 
 #page-header {
-    DISPLAY: none;
+    display: none !important;
 }
