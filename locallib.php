@@ -5,7 +5,7 @@ require_once($CFG->libdir.'/adminlib.php');
 require_once($CFG->libdir.'/modinfolib.php');
 require_once($CFG->libdir.'/formslib.php');
 require_once("$CFG->dirroot/course/lib.php");
-use core_course_category;
+
 
 global $DB, $CFG, $PAGE, $OUTPUT, $USER, $COURSE;
 
@@ -106,7 +106,7 @@ function get_course_plantilla(){
 
   if($categoria_id){
     $lista_cursos = get_course_by_categoria_id($categoria_id);
-    return $lista_cursos;
+    //return $lista_cursos;
     foreach ($lista_cursos as $key => $value) {
       $response[$value['shortname']] = $value['fullname']; 
     }
@@ -116,14 +116,17 @@ function get_course_plantilla(){
 
 
 function get_course_by_categoria_id($categoria_id){
+  use core_course_category;
+  $key = 0;
   $cat = core_course_category::get($categoria_id);
   $children_courses = $cat->get_courses();
   $course_list = array();
 
   foreach($children_courses as $course) {
-      $course_list['id'] = $course->id; 
-      $course_list['shortname'] = $course->shortname; 
-      $course_list['fullname'] = $course->fullname; 
+      $course_list[$key]['id'] = $course->id; 
+      $course_list[$key]['shortname'] = $course->shortname; 
+      $course_list[$key]['fullname'] = $course->fullname; 
+      $key++;
   }
 
   return $course_list;
