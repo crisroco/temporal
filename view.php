@@ -63,4 +63,4 @@ echo '<div class="container">';
     echo '</div>';
 echo '</div>';
 // print(add_action_buttons(false, 'Reporte'));
-print $OUTPUT->footer();
+//print $OUTPUT->footer();
