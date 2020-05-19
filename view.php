@@ -54,7 +54,7 @@ echo '<div class="container">';
                 echo '</div>';
                 echo '<div class="form-group">';
                     echo '<label>Plantilla :</label>';
-                    print(html_writer::select($list_plantillas , 'scorm', 'scorm', 'Elegir...', array('required' => '','class' => 'form-control')));	
+                    //print(html_writer::select($list_plantillas , 'scorm', 'scorm', 'Elegir...', array('required' => '','class' => 'form-control')));	
                 echo '</div>';
                 //echo '<input id="courseidd" type="hidden" name="courseid"  value="'. $courseId .'"> ' ;
                 echo '<button type="submit" class="btn btn-primary">Descargar CSV</button>';
