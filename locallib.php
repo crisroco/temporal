@@ -106,6 +106,7 @@ function get_course_plantilla(){
 
   if($categoria_id){
     $lista_cursos = get_course_by_categoria_id($categoria_id);
+    return $lista_cursos;
     foreach ($lista_cursos as $key => $value) {
       $response[$value['shortname']] = $value['fullname']; 
     }
