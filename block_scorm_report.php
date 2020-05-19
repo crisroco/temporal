@@ -14,8 +14,6 @@ class block_scorm_report extends block_base {
 
         $PAGE->requires->css('/blocks/scorm_report/assets/css/styles.css');
 
-        $courseid = $this->page->course->id;
-        $userid = $USER->id;
 
         if ($this->content !== null) {
           return $this->content;
