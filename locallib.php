@@ -74,8 +74,19 @@ function get_user_rol($userId,$courseId){
 /**
 *retorna los grupos que existen en el curso
 */
-function get_course_groups($courseId){
+function get_course_groups($courseId=null){
 	global $DB;
+
+  $category = $DB->get_records('course_categories',array());
+
+  $sections_list = array();
+
+  foreach($category as $cat){
+      $sections_list[$cat->id] = $cat->name;
+  }
+
+  return $sections_list;
+
 
 	$sql = "SELECT g.id, c.id as courseID, g.name FROM {course} as c
                     INNER JOIN {groups} as g ON c.id = g.courseid

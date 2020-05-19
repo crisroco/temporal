@@ -9,29 +9,29 @@ require_once($CFG->libdir.'/completionlib.php');
 require_once('locallib.php');
 
 
-$courseId = $_GET['courseid'];
-$userId = $_GET['userid'];
+//$courseId = $_GET['courseid'];
+//$userId = $_GET['userid'];
 
-$params = array();
-$params = array('id' => $courseId );
-$course = $DB->get_record('course', $params, '*', MUST_EXIST);
+// $params = array();
+// $params = array('id' => $courseId );
+// $course = $DB->get_record('course', $params, '*', MUST_EXIST);
 
 // Prevent caching of this page to stop confusion when changing page after making AJAX changes
 $PAGE->set_cacheable(false);
-$urlparams = array('courseid' => $_GET['courseid'], 'userid' => $_GET['userid'] );
+$urlparams = array();
 $PAGE->set_url('/view.php', $urlparams);
 
 
-$PAGE->set_pagelayout('course');
-$PAGE->set_heading($course->fullname);
+//$PAGE->set_pagelayout('course');
+//$PAGE->set_heading($course->fullname);
 
 // Get information 
-$list_scorms = get_scorms($courseId);
-$courseGroup = get_course_groups($courseId);
-$list_scorms_enabled = get_mod_availability($courseId);
+//$list_scorms = get_scorms($courseId);
+$courseGroup = get_course_groups();
+//$list_scorms_enabled = get_mod_availability($courseId);
 //$user_list = get_report_data('todos', '1', '30');
 //$userRol = get_user_rol($userId,$courseId);
-$courseGroup['todos'] = 'todos';
+$courseGroup[0] = 'Seleccione';
 
 $PAGE->requires->css('/blocks/scorm_report/assets/css/styles.css');
 print $OUTPUT->header();
@@ -48,14 +48,14 @@ echo '<div class="container">';
         echo '<div class="col-sm-3">';
             echo '<form id="searchform" action="reporte.php" method="get">';
                 echo '<div class="form-group">';
-                    echo '<label>GRUPOS :</label>';
+                    echo '<label>Secciones :</label>';
                     print(html_writer::select($courseGroup , 'group', 'group', 'Elegir...', array('required'=>'', 'class' => 'form-control')));
                 echo '</div>';
                 echo '<div class="form-group">';
                     echo '<label>SCORMS :</label>';
-                    print(html_writer::select($list_scorms , 'scorm', 'scorm', 'Elegir...', array('required' => '','class' => 'form-control')));	
+                    //print(html_writer::select($list_scorms , 'scorm', 'scorm', 'Elegir...', array('required' => '','class' => 'form-control')));	
                 echo '</div>';
-                echo '<input id="courseidd" type="hidden" name="courseid"  value="'. $courseId .'"> ' ;
+                //echo '<input id="courseidd" type="hidden" name="courseid"  value="'. $courseId .'"> ' ;
                 echo '<button type="submit" class="btn btn-primary">Descargar Reporte</button>';
             echo '</form>';
         echo '</div>';
