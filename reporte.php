@@ -25,14 +25,14 @@ global $DB, $USER;
 
 $lista = array (
     array('aaa', 'bbb', 'ccc', 'dddd'),
-    array('123', '456', '789'),
-    array('"aaa"', '"bbb"')
+    array('123', '456', '789','657'),
+    array('aaa', 'bbb','ccc','ddd')
 );
 
 $fp = fopen('fichero.csv', 'w');
 
 foreach ($lista as $campos) {
-    fputcsv($fp, $campos);
+    fputcsv($fp, $campos, ';');
 }
 
 fclose($fp);
