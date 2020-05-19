@@ -34,7 +34,7 @@ $courseGroup = get_course_groups();
 //$userRol = get_user_rol($userId,$courseId);
 
 $PAGE->requires->css('/blocks/scorm_report/assets/css/styles.css');
-print $OUTPUT->header();
+//print $OUTPUT->header();
 $PAGE->requires->js_call_amd('block_scorm_report/module', 'init');
 
 print html_writer::tag('script','',array('src'=>$CFG->wwwroot.'/blocks/scorm_report/assets/js/jquery.min.js'));
