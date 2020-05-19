@@ -19,7 +19,7 @@
 	);
 
 	foreach ($cursos as $key => $value) {
-		$csv_arr[] = array(utf8_encode($value['fullname']),utf8_encode($value['shortname']),utf8_encode($_GET['group']),utf8_encode($_GET['scorm']));
+		$csv_arr[] = array(utf8_decode($value['fullname']),utf8_decode($value['shortname']),utf8_decode($_GET['group']),utf8_decode($_GET['scorm']));
 	}
 
 	$fp = fopen('fichero.csv', 'w');
