@@ -34,13 +34,12 @@ $courseGroup = get_course_groups();
 //$userRol = get_user_rol($userId,$courseId);
 
 $PAGE->requires->css('/blocks/scorm_report/assets/css/styles.css');
+print $OUTPUT->header();
 $PAGE->requires->js_call_amd('block_scorm_report/module', 'init');
 
 print html_writer::tag('script','',array('src'=>$CFG->wwwroot.'/blocks/scorm_report/assets/js/jquery.min.js'));
 print html_writer::tag('script','',array('src'=>$CFG->wwwroot.'/blocks/scorm_report/assets/js/bootstrap.min.js'));
 print html_writer::tag('link','',array('href'=>'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css','rel'=>'stylesheet'));
-
-print_r($list_plantillas);
    
 echo '<div class="container">';
     echo '<div class="row">';
@@ -54,7 +53,7 @@ echo '<div class="container">';
                 echo '</div>';
                 echo '<div class="form-group">';
                     echo '<label>Plantilla :</label>';
-                    //print(html_writer::select($list_plantillas , 'scorm', 'scorm', 'Elegir...', array('required' => '','class' => 'form-control')));	
+                    print(html_writer::select($list_plantillas , 'scorm', 'scorm', 'Elegir...', array('required' => '','class' => 'form-control')));	
                 echo '</div>';
                 //echo '<input id="courseidd" type="hidden" name="courseid"  value="'. $courseId .'"> ' ;
                 echo '<button type="submit" class="btn btn-primary">Descargar CSV</button>';
