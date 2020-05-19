@@ -4,3 +4,7 @@
 .btn-reporte {
     font-size: 10px;
 }
+
+#page-header {
+    DISPLAY: none;
+}
