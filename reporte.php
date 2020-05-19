@@ -14,15 +14,10 @@ if(!isset($_GET['group']) || !isset($_GET['scorm']) ){
 	die();
 }
 
-use core_course_category;
-
-$catid = $_GET['group']; 
-$cat = core_course_category::get($catid);
-$children_courses = $cat->get_courses();
-
-foreach($children_courses as $course) {
-    echo $course->shortname . '   -    '. $course->fullname. '   -    '. $_GET['scorm'] . '<br>';  
-}
+$cursos = get_course_by_categoria_id($_GET['group']);
+echo "<pre>";
+print_r($cursos);
+echo "</pre>";
 
 die();
 
