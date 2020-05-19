@@ -103,6 +103,7 @@ function get_course_plantilla(){
       break;
     }
   }
+  return $categoria_id;
 
   if($categoria_id){
     $lista_cursos = get_course_by_categoria_id($categoria_id);
