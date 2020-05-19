@@ -27,11 +27,11 @@ $PAGE->set_url('/view.php', $urlparams);
 
 // Get information 
 //$list_scorms = get_scorms($courseId);
+$list_plantillas = get_course_plantilla();
 $courseGroup = get_course_groups();
 //$list_scorms_enabled = get_mod_availability($courseId);
 //$user_list = get_report_data('todos', '1', '30');
 //$userRol = get_user_rol($userId,$courseId);
-$courseGroup[0] = 'Seleccione';
 
 $PAGE->requires->css('/blocks/scorm_report/assets/css/styles.css');
 print $OUTPUT->header();
@@ -48,15 +48,15 @@ echo '<div class="container">';
         echo '<div class="col-sm-3">';
             echo '<form id="searchform" action="reporte.php" method="get">';
                 echo '<div class="form-group">';
-                    echo '<label>Secciones :</label>';
+                    echo '<label>Sección :</label>';
                     print(html_writer::select($courseGroup , 'group', 'group', 'Elegir...', array('required'=>'', 'class' => 'form-control')));
                 echo '</div>';
                 echo '<div class="form-group">';
-                    echo '<label>SCORMS :</label>';
-                    //print(html_writer::select($list_scorms , 'scorm', 'scorm', 'Elegir...', array('required' => '','class' => 'form-control')));	
+                    echo '<label>Plantilla :</label>';
+                    print(html_writer::select($list_plantillas , 'scorm', 'scorm', 'Elegir...', array('required' => '','class' => 'form-control')));	
                 echo '</div>';
                 //echo '<input id="courseidd" type="hidden" name="courseid"  value="'. $courseId .'"> ' ;
-                echo '<button type="submit" class="btn btn-primary">Descargar Reporte</button>';
+                echo '<button type="submit" class="btn btn-primary">Descargar CSV</button>';
             echo '</form>';
         echo '</div>';
     echo '</div>';

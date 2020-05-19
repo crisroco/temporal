@@ -5,6 +5,7 @@ require_once($CFG->libdir.'/adminlib.php');
 require_once($CFG->libdir.'/modinfolib.php');
 require_once($CFG->libdir.'/formslib.php');
 require_once("$CFG->dirroot/course/lib.php");
+use core_course_category;
 
 global $DB, $CFG, $PAGE, $OUTPUT, $USER, $COURSE;
 
@@ -74,7 +75,7 @@ function get_user_rol($userId,$courseId){
 /**
 *retorna los grupos que existen en el curso
 */
-function get_course_groups($courseId=null){
+function get_course_groups(){
 	global $DB;
 
   $category = $DB->get_records('course_categories',array());
@@ -86,22 +87,47 @@ function get_course_groups($courseId=null){
   }
 
   return $sections_list;
-
-
-	$sql = "SELECT g.id, c.id as courseID, g.name FROM {course} as c
-                    INNER JOIN {groups} as g ON c.id = g.courseid
-                    WHERE c.id = ?";
-
-    $params = array($courseId);
-    $result = $DB->get_records_sql($sql, $params);
-
-    $group_list = array();
-
-    foreach ($result as $key => $value) {
-		$group_list[$value->id] = $value->name;
-    }
-    return $group_list;
 }
+
+
+function get_course_plantilla(){
+  global $DB;
+
+  $category = $DB->get_records('course_categories',array());
+  $categoria_id = null;
+  $response = array();
+
+  foreach($category as $cat){
+    if ($cat->name == 'platillas') {
+      $categoria_id =  $cat->id;
+      break;
+    }
+  }
+
+  if($categoria_id){
+    $lista_cursos = get_course_by_categoria_id($categoria_id)
+    foreach ($lista_cursos as $key => $value) {
+      $response[$value['shortname']] = $value['fullname']; 
+    }
+  }
+  return $response;
+}
+
+
+function get_course_by_categoria_id($categoria_id){
+  $cat = core_course_category::get($catid);
+  $children_courses = $cat->get_courses();
+  $course_list = array();
+
+  foreach($children_courses as $course) {
+      $course_list['id'] = $course->id; 
+      $course_list['shortname'] = $course->shortname; 
+      $course_list['fullname'] = $course->fullname; 
+  }
+
+  return $course_list;
+}
+
 
 /**
 *retorna el id del grupo y los scorm para los que esta habilitado
