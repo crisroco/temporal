@@ -98,7 +98,7 @@ function get_course_plantilla(){
   $response = array();
 
   foreach($category as $cat){
-    if ($cat->name == 'platillas') {
+    if ($cat->name == 'plantillas') {
       $categoria_id =  $cat->id;
       break;
     }
